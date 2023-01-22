@@ -116,6 +116,11 @@ hr {
     font-weight: 400;
 }
 
+.tasks__list-item-tags {
+    display: flex;
+    gap: 1rem;
+}
+
 .tasks__list-item-tag {
     font-size: 12px;
     color: rgba(0, 0, 0, .5)
@@ -134,7 +139,8 @@ hr {
     border-radius: 10px;
 }
 
-.dialog {
+.dialog,
+.dialog2 {
     position: absolute;
     top: 50%;
     left: 50%;
