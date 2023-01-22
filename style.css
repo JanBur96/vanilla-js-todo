@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #14FFEC;
+    --light-color: #EEEEEE;
+    --dark-color: #222831;
+    --dark-color-100: #393E46;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    max-width: 880px;
+    margin: 0 auto;
+    color: var(--light-color);
+    background-color: var(--dark-color);
+}
+
+ul {
+    list-style: none;
+}
+
+hr {
+    margin: 20px 0;
+    color: #14FFEC;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 16px;
+}
+
+.main {
+    display: flex;
+    gap: 38px;
+}
+
+.tag-list {
+    background-color: var(--dark-color-100);
+    padding: 1rem;
+    border-radius: 10px;
+    min-height: 500px;
+}
+
+.tag-list__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tag-list__list-item {
+    color: var(--dark-color);
+    background-color: var(--light-color);
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tag-list__new-tag {
+    margin-top: 12px;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+}
+
+.task-list {
+    background-color: var(--dark-color-100);
+    padding: 1rem;
+    border-radius: 10px;
+    min-height: 500px;
+    width: 100%;
+}
+
+.task-list__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.task-list__list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #EEEEEE;
+    color: #222831;
+    padding: 8px 10px;
+    border-radius: 10px;
+}
+
+.task-list__list-item-col1 {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.task-list__list-item-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-list__list-item-headline {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.task-list__list-item-tag {
+    font-size: 12px;
+    color: rgba(0, 0, 0, .5)
+}
+
+.task-list__button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.task-list__button {
+    margin-top: 1.25rem;
+    background-color: var(--primary-color);
+    border: none;
+    padding: 12px 36px;
+    border-radius: 10px;
+}
