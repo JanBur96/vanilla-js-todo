@@ -4,91 +4,92 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Vanilla Todo</title>
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
     <header class="header">
         <h1>
-            Fancy Name
+            Vanilla Todo
         </h1>
-        <i>
-            Icon
-        </i>
+        <img src="./assets/github.svg" alt="">
     </header>
     <main class="main">
-        <div class="tag-list">
-            <ul class="tag-list__list">
-                <li class="tag-list__list-item">
+        <div class="tags">
+            <ul class="tags__list list">
+                <li class="tags__list-item">
                     All
                 </li>
-                <li class="tag-list__list-item">
+                <li class="tags__list-item">
                     Important
                 </li>
             </ul>
             <hr>
-            <ul class="tag-list__list tag-list__list--custom">
-                <li class="tag-list__list-item tag-list__list-item--custom">
+            <ul class="tags__list list tags__list--custom">
+                <li class="tags__list-item tags__list-item--custom">
                     Example Tag 1
                 </li>
-                <li class="tag-list__list-item tag-list__list-item--custom">
+                <li class="tags__list-item tags__list-item--custom">
                     Example Tag 2
                 </li>
             </ul>
-            <span class="tag-list__new-tag">
+            <span class="tags__new-tag">
                 + New Tag
             </span>
         </div>
-        <div class="task-list">
-            <ul class="task-list__list">
-                <li class="task-list__list-item">
-                    <div class="task-list__list-item-col1">
-                        <i>
-                            Icon
-                        </i>
-                        <div class="task-list__list-item-main">
-                            <h2 class="task-list__list-item-headline">
+        <div class="tasks">
+            <ul class="tasks__list list">
+                <li class="tasks__list-item">
+                    <div class="tasks__list-item-details">
+                        <img src="./assets/empty-circle.svg" alt="" class="icon">
+                        <div class="tasks__list-item-main">
+                            <h2 class="tasks__list-item-headline">
                                 Example Task 1
                             </h2>
-                            <span class="task-list__list-item-tag">
-                                Tag
+                            <span class="tasks__list-item-tag">
+                                Example Tag 1
                             </span>
                         </div>
                     </div>
-                    <div class="task-list__list-item-col2">
-                        <i>
-                            Icon
-                        </i>
-                    </div>
+                    <img src="./assets/trash.svg" alt="" class="icon">
                 </li>
-                <li class="task-list__list-item">
-                    <div class="task-list__list-item-col1">
-                        <i>
-                            Icon
-                        </i>
-                        <div class="task-list__list-item-main">
-                            <h2 class="task-list__list-item-headline">
+                <li class="tasks__list-item">
+                    <div class="tasks__list-item-details">
+                        <img src="./assets/empty-circle.svg" alt="" class="icon">
+                        <div class="tasks__list-item-main">
+                            <h2 class="tasks__list-item-headline">
                                 Example Task 1
                             </h2>
-                        <span class="task-list__list-item-tag">
-                            Tag
+                        <span class="tasks__list-item-tag">
+                            Example Tag 2
                         </span>
                         </div>
                     </div>
-                    <div class="task-list__list-item-col2">
-                        <i>
-                            Icon
-                        </i>
-                    </div>
+                    <img src="./assets/trash.svg" alt="" class="icon">
                 </li>
                 
             </ul>
-            <div class="task-list__button-container">
-                <button class="task-list__button">
+            <div class="tasks__button-container">
+                <button class="tasks__button">
                     + New Todo
                 </button>
             </div>
         </div>
     </main>
+    <dialog class="dialog" open>
+        <header class="dialog__header">
+            <h2>New Tag</h2>
+            <img src="./assets/cancel.svg" alt="">
+        </header>
+        <form class="dialog__form">
+            <label for="" class="dialog__label">
+                Tag Name
+                <input type="text" class="dialog__input">
+            </label>
+            <button class="dialog__button">Add Tag</button>
+        </form>
+    </dialog>
+
+    <script src="./src/script.js"></script>
 </body>
 </html>
