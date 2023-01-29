@@ -1,5 +1,5 @@
 export default (task) => /* html */`
-    <li class="tasks__list-item">
+    <li class="tasks__list-item" data-id="${task.id}">
         <div class="tasks__list-item-details">
             <img src="./assets/empty-circle.svg" alt="An empty circle which means a todo is unfinished" class="icon">
             <div class="tasks__list-item-main">
@@ -11,6 +11,6 @@ export default (task) => /* html */`
                 </ul>
             </div>
         </div>
-        <img src="./assets/trash.svg" alt="A trash can as a delete icon" class="icon">
+        <img src="./assets/trash.svg" alt="A trash can as a delete icon" class="icon" id="delete-task">
     </li>
 `
