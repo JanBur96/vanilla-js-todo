@@ -1,4 +1,3 @@
-
 const customTagListEl = document.getElementById('custom-tags')
 const taskListEl = document.getElementById('task-list')
 const newTagButtonEl = document.getElementById('new-tag')
@@ -16,4 +15,21 @@ const dialogSelectedEl = document.getElementById('dialog-task-selected')
 const tagAllEl = document.getElementById('tag-all')
 const tagImportantEl = document.getElementById('tag-important')
 
-export { customTagListEl, taskListEl, newTagButtonEl, newTodoButtonEl, dialogEl, dialogEl2, dialogInputEl, dialogInputEl2, dialogButtonEl, dialogButtonEl2, dialogSelectEl, dialogCancelEl, dialogCancelEl2, dialogSelectedEl, tagAllEl, tagImportantEl }
+export {
+    customTagListEl,
+    taskListEl,
+    newTagButtonEl,
+    newTodoButtonEl,
+    dialogEl,
+    dialogEl2,
+    dialogInputEl,
+    dialogInputEl2,
+    dialogButtonEl,
+    dialogButtonEl2,
+    dialogSelectEl,
+    dialogCancelEl,
+    dialogCancelEl2,
+    dialogSelectedEl,
+    tagAllEl,
+    tagImportantEl
+}

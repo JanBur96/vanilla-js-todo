@@ -1,14 +1,14 @@
 // TODO: Refactoring
+// IMPORTS //
 import tagItem from "./tag-item.js"
 import taskItem from "./task-item.js"
-
 import { customTagListEl, taskListEl, newTagButtonEl, newTodoButtonEl, dialogEl, dialogEl2, dialogInputEl, dialogInputEl2, dialogButtonEl, dialogButtonEl2, dialogSelectEl, dialogCancelEl, dialogCancelEl2, dialogSelectedEl, tagAllEl, tagImportantEl } from './selectors.js'
 
+// DATA //
 const customTagList = ["Example Tag 1", "Example Tag 2"]
 let selectedTags = [];
 let selectedTag = "All";
 let shownTasks = [];
-
 let taskList = [
     {
         id: 1,
@@ -25,31 +25,17 @@ let taskList = [
         date: new Date(),
     },
 ]
-
 shownTasks = taskList;
 
-const hydrateTagList = () => {
-    customTagListEl.innerHTML = ""
-    for (let i = 0; i < customTagList.length; i++) {
-        const element = customTagList[i];
+// FUNCTIONS //
+const hydrateList = (listEl, list, view) => {
+    listEl.innerHTML = ""
+    for (let i = 0; i < list.length; i++) {
+        const element = list[i];
         const elementToAppend = document.createElement('li')
-        elementToAppend.innerHTML = tagItem(element)
-
-        customTagListEl.append(elementToAppend)
+        elementToAppend.innerHTML = view(element)
+        listEl.append(elementToAppend)
     }
-}
-
-const hydrateTaskList = () => {
-    taskListEl.innerHTML = ""
-    for (let i = 0; i < shownTasks.length; i++) {
-        const element = shownTasks[i];
-
-        const elementToAppend = document.createElement('li')
-        elementToAppend.innerHTML = taskItem(element)
-
-        taskListEl.append(elementToAppend)
-    }
-    addListenerToDeleteButtons();
 }
 
 const hydrateTagOptions = () => {
@@ -82,6 +68,8 @@ const generateId = () => {
 const deleteTask = (id) => {
     taskList = taskList.filter(task => task.id !== id);
     shownTasks = shownTasks.filter(task => task.id !== id);
+    hydrateList(taskListEl, shownTasks, taskItem)
+    addListenerToDeleteButtons();
 }
 
 const addListenerToDeleteButtons = () => {
@@ -90,7 +78,6 @@ const addListenerToDeleteButtons = () => {
         deleteTaskButtonsEl[i].addEventListener('click', (e) => {
             const taskId = e.target.parentElement.getAttribute('data-id');
             deleteTask(Number(taskId))
-            hydrateTaskList()
         })
     }
 }
@@ -113,7 +100,7 @@ const addListenerToTags = () => {
         tagButtonsEl[i].addEventListener('click', (e) => {
             selectedTag = e.target.innerText;
             filterTaskList()
-            hydrateTaskList()
+            hydrateList(taskListEl, shownTasks, taskItem)
             addListenerToDeleteButtons()
         })
     }
@@ -123,12 +110,35 @@ const filterTaskList = () => {
     shownTasks = taskList.filter(task => task.tags.includes(selectedTag))
 }
 
-hydrateTagList()
-hydrateTaskList()
-hydrateTagOptions()
-addListenerToDeleteButtons()
-addListenerToTags()
+const addNewTask = (e) => {
+    if (dialogInputEl2.value) {
+        taskList.push({
+            id: generateId(),
+            isFinished: false,
+            title: dialogInputEl2.value,
+            tags: selectedTags,
+        })
+        shownTasks = taskList;
+        hydrateList(taskListEl, shownTasks, taskItem)
+        dialogEl2.close()
+        dialogInputEl2.value = ''
+        selectedTags = []
+        addListenerToDeleteButtons()
+    }
+}
 
+const addNewTag = () => {
+    if (dialogInputEl.value) {
+        customTagList.push(dialogInputEl.value);
+        hydrateList(customTagListEl, customTagList, tagItem)
+        hydrateTagOptions()
+        dialogEl.close()
+        dialogInputEl.value = ''
+        addListenerToTags()
+    }
+}
+
+// EVENTS //
 newTagButtonEl.addEventListener('click', () => {
     dialogEl.show();
 })
@@ -147,32 +157,12 @@ dialogCancelEl2.addEventListener('click', () => {
 
 dialogButtonEl.addEventListener('click', (e) => {
     e.preventDefault()
-
-    if (dialogInputEl.value) {
-        customTagList.push(dialogInputEl.value);
-        hydrateTagList()
-        hydrateTagOptions()
-        dialogEl.close()
-        dialogInputEl.value = ''
-        addListenerToTags()
-    }
+    addNewTag()
 })
 
 dialogButtonEl2.addEventListener('click', (e) => {
     e.preventDefault()
-    if (dialogInputEl2.value) {
-        taskList.push({
-            id: generateId(),
-            isFinished: false,
-            title: dialogInputEl2.value,
-            tags: selectedTags,
-        })
-        hydrateTaskList()
-        dialogEl2.close()
-        dialogInputEl2.value = ''
-        selectedTags = []
-        addListenerToDeleteButtons()
-    }
+    addNewTask()
 })
 
 dialogSelectEl.addEventListener('change', (e) => {
@@ -183,12 +173,19 @@ dialogSelectEl.addEventListener('change', (e) => {
 
 tagAllEl.addEventListener('click', () => {
     shownTasks = taskList;
-    hydrateTaskList()
+    hydrateList(taskListEl, shownTasks, taskItem)
     addListenerToDeleteButtons();
 })
 
 tagImportantEl.addEventListener('click', () => {
     shownTasks = taskList.filter(task => task.tags.includes("Important"))
-    hydrateTaskList()
+    hydrateList(taskListEl, shownTasks, taskItem)
     addListenerToDeleteButtons()
 })
+
+// Initialization //
+hydrateList(customTagListEl, customTagList, tagItem)
+hydrateList(taskListEl, shownTasks, taskItem)
+hydrateTagOptions()
+addListenerToDeleteButtons()
+addListenerToTags()
