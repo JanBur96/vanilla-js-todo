@@ -2,7 +2,7 @@
 import tagItem from "./tag-item.js"
 import taskItem from "./task-item.js"
 
-import { customTagListEl, taskListEl, newTagButtonEl, newTodoButtonEl, dialogEl, dialogEl2, dialogInputEl, dialogInputEl2, dialogButtonEl, dialogButtonEl2, dialogSelectEl, dialogCancelEl, dialogCancelEl2, dialogSelectedEl } from './selectors.js'
+import { customTagListEl, taskListEl, newTagButtonEl, newTodoButtonEl, dialogEl, dialogEl2, dialogInputEl, dialogInputEl2, dialogButtonEl, dialogButtonEl2, dialogSelectEl, dialogCancelEl, dialogCancelEl2, dialogSelectedEl, tagAllEl, tagImportantEl } from './selectors.js'
 
 const customTagList = ["Example Tag 1", "Example Tag 2"]
 let selectedTags = [];
@@ -49,6 +49,7 @@ const hydrateTaskList = () => {
 
         taskListEl.append(elementToAppend)
     }
+    addListenerToDeleteButtons();
 }
 
 const hydrateTagOptions = () => {
@@ -180,3 +181,14 @@ dialogSelectEl.addEventListener('change', (e) => {
     addListenerToDeleteSelectedTags()
 })
 
+tagAllEl.addEventListener('click', () => {
+    shownTasks = taskList;
+    hydrateTaskList()
+    addListenerToDeleteButtons();
+})
+
+tagImportantEl.addEventListener('click', () => {
+    shownTasks = taskList.filter(task => task.tags.includes("Important"))
+    hydrateTaskList()
+    addListenerToDeleteButtons()
+})

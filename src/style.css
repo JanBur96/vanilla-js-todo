@@ -105,6 +105,19 @@ dialog {
     background-color: var(--dark-color-100);
 }
 
+.tasks__list {
+    height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+}
+
+.tasks__list::-webkit-scrollbar {
+    display: none;
+}
+
+
 .tasks__list-item {
     padding: 8px 10px;
     display: flex;

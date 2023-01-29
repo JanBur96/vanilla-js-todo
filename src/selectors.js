@@ -13,6 +13,7 @@ const dialogSelectEl = document.getElementById('dialog-task-select')
 const dialogCancelEl = document.getElementById('dialog-tag-cancel')
 const dialogCancelEl2 = document.getElementById('dialog-cancel-task')
 const dialogSelectedEl = document.getElementById('dialog-task-selected')
-const deleteSelectedTagEl = document.getElementById('delete-selected-tag')
+const tagAllEl = document.getElementById('tag-all')
+const tagImportantEl = document.getElementById('tag-important')
 
-export { customTagListEl, taskListEl, newTagButtonEl, newTodoButtonEl, dialogEl, dialogEl2, dialogInputEl, dialogInputEl2, dialogButtonEl, dialogButtonEl2, dialogSelectEl, dialogCancelEl, dialogCancelEl2, dialogSelectedEl }
+export { customTagListEl, taskListEl, newTagButtonEl, newTodoButtonEl, dialogEl, dialogEl2, dialogInputEl, dialogInputEl2, dialogButtonEl, dialogButtonEl2, dialogSelectEl, dialogCancelEl, dialogCancelEl2, dialogSelectedEl, tagAllEl, tagImportantEl }
