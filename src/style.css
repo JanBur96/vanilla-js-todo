@@ -42,10 +42,12 @@ dialog {
     display: block;
 
   }
+
   dialog[open] {
     opacity: 1;
     pointer-events: inherit;
   }
+
 
 .icon {
     color: var(--primary-color);
@@ -95,6 +97,7 @@ dialog {
     display: flex;
     justify-content: center;
     color: var(--primary-color);
+    cursor: pointer;
 }
 
 .tasks {
@@ -109,7 +112,6 @@ dialog {
     height: 80vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
 }
 
@@ -126,6 +128,10 @@ dialog {
     background-color: #EEEEEE;
     color: #222831;
     border-radius: 10px;
+}
+
+.task__list-item--finished h2 {
+    text-decoration: line-through;
 }
 
 .tasks__list-item-details {
@@ -205,4 +211,9 @@ dialog {
     border: none;
     padding: .5rem 1rem;
     border-radius: 10px;
+}
+
+.dialog__cancel {
+    width: 16px;
+    height: 16px;
 }
