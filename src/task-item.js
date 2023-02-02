@@ -1,7 +1,7 @@
 export default (task) => /* html */`
     <li class="tasks__list-item" data-id="${task.id}">
         <div class="tasks__list-item-details">
-            <img src="./assets/empty-circle.svg" alt="An empty circle which means a todo is unfinished" class="icon" id="finish-todo">
+            <img src="./assets/empty-circle.svg" alt="An empty circle which means a todo is unfinished" class="icon" id="finish-task">
             <div class="tasks__list-item-main">
                 <h2 class="tasks__list-item-headline">
                     ${task.title}

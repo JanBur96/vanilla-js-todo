@@ -132,6 +132,7 @@ dialog {
 
 .task__list-item--finished h2 {
     text-decoration: line-through;
+    text-decoration-thickness: 3px;
 }
 
 .tasks__list-item-details {
@@ -171,6 +172,7 @@ dialog {
     background-color: var(--primary-color);
     border: none;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .dialog {
@@ -211,9 +213,11 @@ dialog {
     border: none;
     padding: .5rem 1rem;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .dialog__cancel {
     width: 16px;
     height: 16px;
+    cursor: pointer;
 }

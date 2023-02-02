@@ -1,8 +1,7 @@
-// TODO: Refactoring
 // IMPORTS //
 import tagItem from "./tag-item.js"
 import taskItem from "./task-item.js"
-import { customTagListEl, taskListEl, newTagButtonEl, newTodoButtonEl, dialogTagEl, dialogTaskEl, dialogInputTagEl, dialogInputTaskEl, dialogButtonTagEl, dialogButtonTaskEl, dialogSelectEl, dialogCancelTagEl, dialogCancelTaskEl, dialogSelectedEl, tagAllEl, tagImportantEl, finishTodoEl } from './selectors.js'
+import { customTagListEl, taskListEl, newTagButtonEl, newTaskButtonEl, dialogTagEl, dialogTaskEl, dialogInputTagEl, dialogInputTaskEl, newTagDialogButtonEl, newTaskDialogButtonEl, newTaskDialogSelectEl, newTagDialogCancelEl, newTaskDialogCancelEl, dialogSelectedEl, tagAllEl, tagImportantEl } from './selectors.js'
 
 // DATA //
 const customTagList = ["Example Tag 1", "Example Tag 2"]
@@ -40,18 +39,18 @@ const hydrateList = (listEl, list, view) => {
 }
 
 const hydrateTagOptions = () => {
-    dialogSelectEl.innerHTML = "";
+    newTaskDialogSelectEl.innerHTML = "";
 
     const elementToAppend = document.createElement('option');
     elementToAppend.innerHTML = "<option selected='selected' disabled>Select a tag</option>";
 
-    dialogSelectEl.append(elementToAppend);
+    newTaskDialogSelectEl.append(elementToAppend);
 
     for (let i = 0; i < customTagList.length; i++) {
         const element = customTagList[i];
         const elementToAppend = document.createElement('option');
         elementToAppend.innerHTML = element;
-        dialogSelectEl.append(elementToAppend);
+        newTaskDialogSelectEl.append(elementToAppend);
     }
 }
 
@@ -99,15 +98,24 @@ const addListenerToDeleteSelectedTags = () => {
     }
 }
 
-const addListenerToFinishTodo = () => {
-    const finishTodoButtonsEl = document.querySelectorAll('#finish-todo');
-    console.log(finishTodoButtonsEl)
+const addListenerToFinishTask = () => {
+    const finishTaskButtonsEl = document.querySelectorAll('#finish-task');
+    console.log(finishTaskButtonsEl)
 
-    for (let i = 0; i < finishTodoButtonsEl.length; i++) {
-        finishTodoButtonsEl[i].addEventListener('click', (e) => {
+    for (let i = 0; i < finishTaskButtonsEl.length; i++) {
+        finishTaskButtonsEl[i].addEventListener('click', (e) => {
             const taskId = e.target.parentElement.parentElement.getAttribute('data-id')
-            console.log(e.target.parentElement.parentElement.classList.add("task__list-item--finished"))
-            taskList[taskId].isFinished = true;
+            const taskToToggle = taskList.find((task) => task.id === Number(taskId));
+
+            if (!taskToToggle.isFinished) {
+                e.target.parentElement.parentElement.classList.add("task__list-item--finished")
+                e.target.src = "./assets/check-circle.svg"
+                taskToToggle.isFinished = true;
+            } else {
+                e.target.parentElement.parentElement.classList.remove("task__list-item--finished")
+                e.target.src = "./assets/empty-circle.svg"
+                taskToToggle.isFinished = false;
+            }
         })
     }
 }
@@ -153,10 +161,10 @@ const addNewTask = (e) => {
 const addNewTag = () => {
     if (dialogInputTagEl.value) {
         customTagList.push(dialogInputTagEl.value);
-        hydrateList(customTagListEl, customTagList, tagItem)
-        hydrateTagOptions()
         dialogTagEl.close()
         dialogInputTagEl.value = ''
+        hydrateList(customTagListEl, customTagList, tagItem)
+        hydrateTagOptions()
         addListenerToTags()
     }
 }
@@ -166,29 +174,29 @@ newTagButtonEl.addEventListener('click', () => {
     dialogTagEl.show();
 })
 
-newTodoButtonEl.addEventListener('click', () => {
-    dialogTaskEl.show();
-})
-
-dialogCancelTagEl.addEventListener('click', () => {
-    dialogTagEl.close()
-})
-
-dialogCancelTaskEl.addEventListener('click', () => {
-    dialogTaskEl.close()
-})
-
-dialogButtonTagEl.addEventListener('click', (e) => {
+newTagDialogButtonEl.addEventListener('click', (e) => {
     e.preventDefault()
     addNewTag()
 })
 
-dialogButtonTaskEl.addEventListener('click', (e) => {
+newTagDialogCancelEl.addEventListener('click', () => {
+    dialogTagEl.close()
+})
+
+newTaskButtonEl.addEventListener('click', () => {
+    dialogTaskEl.show();
+})
+
+newTaskDialogCancelEl.addEventListener('click', () => {
+    dialogTaskEl.close()
+})
+
+newTaskDialogButtonEl.addEventListener('click', (e) => {
     e.preventDefault()
     addNewTask()
 })
 
-dialogSelectEl.addEventListener('change', (e) => {
+newTaskDialogSelectEl.addEventListener('change', (e) => {
     selectedTags.push(e.target.value)
     hydrateSelectedTags();
     addListenerToDeleteSelectedTags()
@@ -206,10 +214,17 @@ tagImportantEl.addEventListener('click', () => {
     addListenerToDeleteButtons()
 })
 
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        dialogTagEl.close()
+        dialogTaskEl.close()
+    }
+})
+
 // Initialization //
 hydrateList(customTagListEl, customTagList, tagItem)
 hydrateList(taskListEl, shownTasks, taskItem)
 hydrateTagOptions()
 addListenerToDeleteButtons()
 addListenerToTags()
-addListenerToFinishTodo()
+addListenerToFinishTask()
