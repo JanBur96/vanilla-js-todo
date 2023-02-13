@@ -13,7 +13,9 @@
         <h1>
             Vanilla Todo
         </h1>
-        <img src="./assets/github.svg" alt="">
+        <a href="https://github.com/janbur96" target="_blank">
+            <img src="./assets/github.svg" alt="Vector icon of the GitHub logo">
+        </a>
     </header>
     
     <main class="main">
@@ -71,6 +73,13 @@
                 <ul id="dialog-task-selected"></ul>
                 <select class="dialog__select" id="dialog-task-select">
                 </select>
+            </div>
+            <div>
+                <label class="dialog__label">Important</label>
+                <div class="dialog__checkbox">
+                    Important
+                    <input type="checkbox" class="dialog__select" id="dialog-task-checkbox">
+                </div>
             </div>
             <button class="dialog__button" id="task-button">Add Task</button>
         </form>

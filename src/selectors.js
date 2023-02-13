@@ -11,6 +11,7 @@ const newTaskDialogButtonEl = document.getElementById('task-button')
 const newTaskDialogSelectEl = document.getElementById('dialog-task-select')
 const newTagDialogCancelEl = document.getElementById('dialog-tag-cancel')
 const newTaskDialogCancelEl = document.getElementById('dialog-cancel-task')
+const newTaskDialogCheckboxEl = document.getElementById('dialog-task-checkbox');
 const dialogSelectedEl = document.getElementById('dialog-task-selected')
 const tagAllEl = document.getElementById('tag-all')
 const tagImportantEl = document.getElementById('tag-important')
@@ -32,4 +33,5 @@ export {
     dialogSelectedEl,
     tagAllEl,
     tagImportantEl,
+    newTaskDialogCheckboxEl,
 }

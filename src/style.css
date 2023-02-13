@@ -81,10 +81,11 @@ dialog {
 }
 
 .tags__list-item {
+    padding: 0 8px;
     width: 150px;
     height: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--light-color);
     color: var(--dark-color);
@@ -243,9 +244,20 @@ dialog {
     cursor: pointer;
 }
 
+.dialog__cancel--tag {
+    width: 10px;
+    height: 10px;
+    margin-bottom: 10px;
+}
+
 .dialog__list-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: .5rem 0;
+}
+
+.dialog__checkbox {
+    display: flex;
+    align-items: center;
 }
